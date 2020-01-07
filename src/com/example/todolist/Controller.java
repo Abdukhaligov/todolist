@@ -1,7 +1,10 @@
 package com.example.todolist;
 
 import com.example.todolist.datamodel.TodoItem;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
@@ -22,29 +25,42 @@ public class Controller {
     @FXML
     private TextArea itemDetailsTextArea;
 
+    @FXML
+    private Label deadLineLabel;
+
     public void initialize(){
         TodoItem item1 = new TodoItem("Mail birthday card", "Buy a 30th birthday card fot Jhon",
                 LocalDate.of(2016, Month.APRIL, 25));
         TodoItem item2 = new TodoItem("Doctor's Appointment", "See Dr. Smith",
-                LocalDate.of(2016, Month.APRIL, 25));
+                LocalDate.of(2014, Month.MARCH, 18));
 
         todoItems = new ArrayList<TodoItem>();
         todoItems.add(item1);
         todoItems.add(item2);
 
+        todoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TodoItem>() {
+            @Override
+            public void changed(ObservableValue<? extends TodoItem> observableValue, TodoItem todoItem, TodoItem t1) {
+                if(t1 != null){
+                    TodoItem item = todoListView.getSelectionModel().getSelectedItem();
+                    itemDetailsTextArea.setText(item.getDetails());
+                }
+            }
+        });
+
         todoListView.getItems().setAll(todoItems);
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        todoListView.getSelectionModel().selectFirst();
+
     }
 
     @FXML
     public void handleClickListView(){
         TodoItem item = todoListView.getSelectionModel().getSelectedItem();
 
-        StringBuilder sb = new StringBuilder(item.getDetails());
-        sb.append("\n\n\n");
-        sb.append("Due: ");
-        sb.append(item.getDeadLine().toString());
+        itemDetailsTextArea.setText(item.getDetails());
+        deadLineLabel.setText(item.getDeadLine().toString());
 
-        itemDetailsTextArea.setText(sb.toString());
     }
 }
