@@ -1,5 +1,6 @@
 package com.example.todolist;
 
+import com.example.todolist.datamodel.TodoData;
 import com.example.todolist.datamodel.TodoItem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class Controller {
 
-    private List<TodoItem> todoItems;
+//    private List<TodoItem> todoItems;
 
     @FXML
     private ListView<TodoItem> todoListView;
@@ -30,14 +31,16 @@ public class Controller {
     private Label deadLineLabel;
 
     public void initialize(){
-        TodoItem item1 = new TodoItem("Mail birthday card", "Buy a 30th birthday card fot Jhon",
-                LocalDate.of(2016, Month.APRIL, 25));
-        TodoItem item2 = new TodoItem("Doctor's Appointment", "See Dr. Smith",
-                LocalDate.of(2014, Month.MARCH, 18));
-
-        todoItems = new ArrayList<TodoItem>();
-        todoItems.add(item1);
-        todoItems.add(item2);
+//        TodoItem item1 = new TodoItem("Mail birthday card", "Bufffffffffffy a 30th birthday card fot Jhon",
+//                LocalDate.of(2016, Month.APRIL, 25));
+//        TodoItem item2 = new TodoItem("Doctor's Appointment", "See Dr. Smith",
+//                LocalDate.of(2014, Month.MARCH, 18));
+//
+//        todoItems = new ArrayList<TodoItem>();
+//        todoItems.add(item1);
+//        todoItems.add(item2);
+//
+//        TodoData.getInstance().setTodoItems(todoItems);
 
         todoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TodoItem>() {
             @Override
@@ -53,7 +56,8 @@ public class Controller {
             }
         });
 
-        todoListView.getItems().setAll(todoItems);
+//        todoListView.getItems().setAll(todoItems);
+        todoListView.getItems().setAll(TodoData.getInstance().getTodoItems());
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         todoListView.getSelectionModel().selectFirst();
