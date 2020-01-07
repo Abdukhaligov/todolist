@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +45,10 @@ public class Controller {
                 if(t1 != null){
                     TodoItem item = todoListView.getSelectionModel().getSelectedItem();
                     itemDetailsTextArea.setText(item.getDetails());
+                    DateTimeFormatter df = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+                    deadLineLabel.setText(df.format(item.getDeadLine()));
+
+                    //https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html
                 }
             }
         });
@@ -55,12 +60,4 @@ public class Controller {
 
     }
 
-    @FXML
-    public void handleClickListView(){
-        TodoItem item = todoListView.getSelectionModel().getSelectedItem();
-
-        itemDetailsTextArea.setText(item.getDetails());
-        deadLineLabel.setText(item.getDeadLine().toString());
-
-    }
 }
