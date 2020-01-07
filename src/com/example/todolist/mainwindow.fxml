@@ -1,0 +1,6 @@
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:controller="com.example.todolist.Controller"
+            xmlns:fx="http://javafx.com/fxml">
+
+</BorderPane>
