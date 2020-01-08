@@ -29,7 +29,7 @@ public class TodoItem {
         this.details = details;
     }
 
-    public LocalDate getDeadLine() {
+    public LocalDate getdeadline() {
         return deadLine;
     }
 

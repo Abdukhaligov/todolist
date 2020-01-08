@@ -71,7 +71,7 @@ public class TodoData {
                 bw.write(String.format("%s\t%s\t%s",
                         item.getShortDescription(),
                         item.getDetails(),
-                        item.getDeadLine().format(formatter)));
+                        item.getdeadline().format(formatter)));
 
                 bw.newLine();
             }
@@ -82,4 +82,7 @@ public class TodoData {
         }
     }
 
+    public void deleteTodoItem(TodoItem item) {
+        todoItems.remove(item);
+    }
 }
