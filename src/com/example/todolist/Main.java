@@ -28,7 +28,8 @@ public class Main extends Application {
     public void stop() throws Exception {
         try {
             TodoData.getInstance().storeTodoItems();
-        } catch (IOException e){
+
+        } catch(IOException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -37,7 +38,8 @@ public class Main extends Application {
     public void init() throws Exception {
         try {
             TodoData.getInstance().loadTodoItems();
-        } catch (IOException e){
+
+        } catch(IOException e) {
             System.out.println(e.getMessage());
         }
     }
